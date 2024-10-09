@@ -21,6 +21,8 @@ public class User {
     private String username;
     @Column(name = "c_password")
     private String password;
+    @Column(name="c_email")
+    private String email;
     @Column(name="c_fio")
     private String fio;
     @Column(name = "c_date_of_birth")

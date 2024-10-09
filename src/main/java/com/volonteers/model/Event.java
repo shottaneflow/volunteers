@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,12 +19,11 @@ public class Event {
     private Integer id;
     @Column(name = "c_name")
     private String name;
-    @Column(name="c_date_time",columnDefinition = "TIMESTAMP WITH TIME ZONE")
-    private ZonedDateTime dateTime;
-    @Column(name="c_place")
-    private String place;
+    @Column(name="c_date_time")
+    private LocalDateTime dateTime;
     @Column(name = "c_type")
     private String type;
+
     @Column(name = "c_required_volunteers")
     private Integer requiredVolunteers;
     @Column(name = "c_registered_volunteers")
@@ -32,13 +31,13 @@ public class Event {
     @Column(name = "c_status")
     private String status;
     @ManyToMany
-    @JoinTable(name = "t_event_location",
-    joinColumns = @JoinColumn(name = "id_event"),
-    inverseJoinColumns = @JoinColumn(name = "id_location")
-    )
-    private List<Location> locations;
+    @JoinTable(name = "t_event_activity",
+    joinColumns = @JoinColumn(name="id_event"),
+    inverseJoinColumns = @JoinColumn(name="id_activity"))
+    private List<Activity> activities;
 
     public Event() {
-        this.locations = new ArrayList<>();
+        this.activities=new ArrayList<>();
     }
+
 }
