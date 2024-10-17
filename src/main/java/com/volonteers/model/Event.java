@@ -1,6 +1,7 @@
 package com.volonteers.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,6 +19,7 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(name = "c_name")
+    @Size(min = 1, max = 150)
     private String name;
     @Column(name="c_date_time")
     private LocalDateTime dateTime;
@@ -25,8 +27,10 @@ public class Event {
     private String type;
 
     @Column(name = "c_required_volunteers")
+    @Size(min = 0, max = 250)
     private Integer requiredVolunteers;
     @Column(name = "c_registered_volunteers")
+    @Size(min = 0, max = 250)
     private Integer registeredVolunteers;
     @Column(name = "c_status")
     private String status;

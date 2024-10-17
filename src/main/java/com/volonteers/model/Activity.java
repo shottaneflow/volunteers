@@ -1,6 +1,7 @@
 package com.volonteers.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,8 +22,10 @@ public class Activity {
     @Column(name="c_end_date")
     private LocalDate endDate;
     @Column(name = "c_required_volunteers")
+    @Size(min = 0, max = 250)
     private Integer requiredVolunteers;
     @Column(name = "c_registered_volunteers")
+    @Size(min = 0, max = 250)
     private Integer registeredVolunteers;
     @ManyToMany
     @JoinTable(name="t_activity_locations",

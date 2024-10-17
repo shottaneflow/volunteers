@@ -1,6 +1,7 @@
 package com.volonteers.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,12 +19,16 @@ public class User {
     private Integer id;
 
     @Column(name = "c_username")
+    @Size(min=4,max=8)
     private String username;
     @Column(name = "c_password")
+    @Size(min=4,max=12)
     private String password;
     @Column(name="c_email")
+    @Size(min=5,max=25)
     private String email;
     @Column(name="c_fio")
+    @Size(min=5,max=50)
     private String fio;
     @Column(name = "c_date_of_birth")
     private String dateOfBirth;
