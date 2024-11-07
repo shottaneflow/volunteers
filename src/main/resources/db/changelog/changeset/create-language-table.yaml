@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-language
+      author: Danil Dmitriev
+      changes:
+        - createTable:
+            tableName: t_language
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: c_language_name
+                  type: varchar(150)
+                  constraints:
+                    nullable: false

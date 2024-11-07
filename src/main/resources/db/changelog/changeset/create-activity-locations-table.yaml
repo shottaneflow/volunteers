@@ -1,0 +1,30 @@
+databaseChangeLog:
+   - changeSet:
+        id: create-activity-locations
+        author: Danil Dmitriev
+        changes:
+          - createTable:
+              tableName: t_activity_locations
+              columns:
+                - column:
+                    name: id_activity
+                    type: int
+                    constraints:
+                      nullable: false
+                - column:
+                    name: id_location
+                    type: int
+                    constraints:
+                      nullable: false
+          - addForeignKeyConstraint:
+              baseTableName: t_activity_locations
+              baseColumnNames: id_activity
+              referencedTableName: t_activity
+              referencedColumnNames: id
+              constraintName: fk_activity_locations
+          - addForeignKeyConstraint:
+              baseTableName: t_activity_locations
+              baseColumnNames: id_location
+              referencedTableName: t_location
+              referencedColumnNames: id
+              constraintName: fk_location_activity

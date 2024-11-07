@@ -1,0 +1,13 @@
+databaseChangeLog:
+    - changeSet:
+        id: modify-user-email-nullable
+        author: Danil Dmitriev
+        changes:
+          - modifyDataType:
+              tableName: t_user
+              columnName: c_email
+              newDataType: varchar(25)
+          - dropNotNullConstraint:
+              tableName: t_user
+              columnName: c_email
+              columnDataType: varchar(25)

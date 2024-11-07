@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: modify-user-email-length
+      author: Danil Dmitriev
+      changes:
+        - modifyDataType:
+            tableName: t_user
+            columnName: c_email
+            newDataType: varchar(50)
+

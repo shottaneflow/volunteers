@@ -11,6 +11,7 @@ import java.util.List;
 
 @Entity
 @Getter
+@Table(name="t_activity")
 @Setter
 public class Activity {
     @Id

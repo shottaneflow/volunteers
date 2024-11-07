@@ -2,17 +2,20 @@ package com.volonteers.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
+@AllArgsConstructor
 @Entity
 @Table(name="t_user")
-public class User {
+public class Volunteer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,10 +25,9 @@ public class User {
     @Size(min=4,max=8)
     private String username;
     @Column(name = "c_password")
-    @Size(min=4,max=12)
     private String password;
     @Column(name="c_email")
-    @Size(min=5,max=25)
+    @Size(min=5,max=50)
     private String email;
     @Column(name="c_fio")
     @Size(min=5,max=50)
@@ -34,6 +36,11 @@ public class User {
     private String dateOfBirth;
     @Column(name = "c_gender")
     private String gender;
+
+    @Column(name = "c_activation_code")
+    private String activationCode;
+    @Column(name="c_active")
+    private boolean active;
 
 
 
@@ -51,7 +58,16 @@ public class User {
 
 
 
-    public User() {
+    public Volunteer() {
         this.authorities=new ArrayList<>();
     }
+
+    public void addAuthorities(Authority authority) {
+        this.authorities.add(authority);
+    }
+
+
+
+
+
 }

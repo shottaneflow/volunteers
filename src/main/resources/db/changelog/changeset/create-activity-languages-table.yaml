@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-activity-languages
+      author: Danil Dmitriev
+      changes:
+        - createTable:
+            tableName: t_activity_languages
+            columns:
+              - column:
+                  name: id_activity
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: id_language
+                  type: int
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: t_activity_languages
+            baseColumnNames: id_activity
+            referencedTableName: t_activity
+            referencedColumnNames: id
+            constraintName: fk_activity_languages
+        - addForeignKeyConstraint:
+            baseTableName: t_activity_languages
+            baseColumnNames: id_language
+            referencedTableName: t_language
+            referencedColumnNames: id
+            constraintName: fk_language_activity

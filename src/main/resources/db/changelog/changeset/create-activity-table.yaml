@@ -1,0 +1,33 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-activity
+      author: Danil Dmitriev
+      changes:
+        - createTable:
+            tableName: t_activity
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: c_name
+                  type: varchar(255)
+              - column:
+                  name: c_start_date
+                  type: date
+              - column:
+                  name: c_end_date
+                  type: date
+              - column:
+                  name: c_required_volunteers
+                  type: int
+                  constraints:
+                    nullable: true
+              - column:
+                  name: c_registered_volunteers
+                  type: int
+                  constraints:
+                    nullable: true

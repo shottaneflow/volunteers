@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-location
+      author: Danil Dmitriev
+      changes:
+        - createTable:
+            tableName: t_location
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: c_name
+                  type: varchar(150)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: c_address
+                  type: varchar(150)

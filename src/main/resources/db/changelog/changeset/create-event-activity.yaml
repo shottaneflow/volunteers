@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-event-activity
+      author: Danil Dmitriev
+      changes:
+        - createTable:
+            tableName: t_event_activity
+            columns:
+              - column:
+                  name: id_event
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: id_activity
+                  type: int
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: t_event_activity
+            baseColumnNames: id_event
+            referencedTableName: t_event
+            referencedColumnNames: id
+            constraintName: fk_event_activity
+        - addForeignKeyConstraint:
+            baseTableName: t_event_activity
+            baseColumnNames: id_activity
+            referencedTableName: t_activity
+            referencedColumnNames: id
+            constraintName: fk_activity_event

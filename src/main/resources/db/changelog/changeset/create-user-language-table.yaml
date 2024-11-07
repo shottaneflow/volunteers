@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-user-language
+      author: Danil Dmitriev
+      changes:
+        - createTable:
+            tableName: t_user_languages
+            columns:
+              - column:
+                  name: id_user
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: id_language
+                  type: int
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: t_user_languages
+            baseColumnNames: id_user
+            referencedTableName: t_user
+            referencedColumnNames: id
+            constraintName: fk_user_languages
+        - addForeignKeyConstraint:
+            baseTableName: t_user_languages
+            baseColumnNames: id_language
+            referencedTableName: t_language
+            referencedColumnNames: id
+            constraintName: fk_language_user

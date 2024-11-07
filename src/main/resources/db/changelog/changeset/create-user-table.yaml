@@ -1,0 +1,39 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-user
+      author: Danil Dmitriev
+      changes:
+        - createTable:
+            tableName: t_user
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: c_username
+                  type: varchar(8)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: c_password
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: c_email
+                  type: varchar(25)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: c_fio
+                  type: varchar(50)
+              - column:
+                  name: c_date_of_birth
+                  type: varchar(100)
+              - column:
+                  name: c_gender
+                  type: varchar(25)

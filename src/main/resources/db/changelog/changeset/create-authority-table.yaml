@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-authority
+      author: Danil Dmitriev
+      changes:
+        - createTable:
+            tableName: t_authority
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: authority_name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false

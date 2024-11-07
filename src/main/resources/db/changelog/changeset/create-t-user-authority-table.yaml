@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-user-authority
+      author: Danil Dmitriev
+      changes:
+        - createTable:
+            tableName: t_user_authority
+            columns:
+              - column:
+                  name: id_user
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: id_authority
+                  type: int
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: t_user_authority
+            baseColumnNames: id_user
+            referencedTableName: t_user
+            referencedColumnNames: id
+            constraintName: fk_user_authotity
+        - addForeignKeyConstraint:
+            baseTableName: t_user_authority
+            baseColumnNames: id_authority
+            referencedTableName: t_authority
+            referencedColumnNames: id
+            constraintName: fk_user_authority
