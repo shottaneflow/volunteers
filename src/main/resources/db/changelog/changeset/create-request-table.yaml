@@ -1,0 +1,43 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-request
+      author: Danil Dmitriev
+      changes:
+        - createTable:
+            tableName: t_request
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: activity_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: c_status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: t_request
+            baseColumnNames: user_id
+            referencedTableName: t_user
+            referencedColumnNames: id
+            onDelete: cascade
+            constraintName: fk_request_user
+        - addForeignKeyConstraint:
+            baseTableName : t_request
+            baseColumnNames: activity_id
+            referencedTableName: t_activity
+            referencedColumnNames: id
+            onDelete: cascade
+            constraintName: fk_request activity

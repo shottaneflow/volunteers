@@ -29,3 +29,9 @@ databaseChangeLog:
       file: db/changelog/changeset/modify-user-active-activatecode.yaml
   - include:
       file: db/changelog/changeset/modify-user-email-length.yaml
+  - include:
+      file: db/changelog/changeset/modify-activity-endDate.yaml
+  - include:
+      file: db/changelog/changeset/create-activity-users-table.yaml
+  - include:
+      file: db/changelog/changeset/create-request-table.yaml

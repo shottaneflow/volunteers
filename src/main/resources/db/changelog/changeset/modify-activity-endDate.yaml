@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id : drop-end-date-column
+      author: Danil Dmitriev
+      changes:
+        - dropColumn:
+            columnName: c_end_date
+            tableName: t_activity

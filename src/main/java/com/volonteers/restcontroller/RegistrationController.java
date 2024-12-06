@@ -1,12 +1,9 @@
-package com.volonteers.controller;
+package com.volonteers.restcontroller;
 
 
-import com.volonteers.exceptions.AppError;
 import com.volonteers.model.Volunteer;
-import com.volonteers.service.DefaultUserService;
 import com.volonteers.service.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.parsing.Problem;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;

@@ -20,8 +20,6 @@ public class Activity {
     private String name;
     @Column(name="c_start_date")
     private LocalDate startDate;
-    @Column(name="c_end_date")
-    private LocalDate endDate;
     @Column(name = "c_required_volunteers")
     @Size(min = 0, max = 250)
     private Integer requiredVolunteers;
@@ -40,8 +38,15 @@ public class Activity {
     inverseJoinColumns = @JoinColumn(name="id_language"))
     private List <Language> languages;
 
+    @ManyToMany
+    @JoinTable(name="t_activity_users",
+    joinColumns = @JoinColumn(name="id_activity"),
+    inverseJoinColumns = @JoinColumn(name="id_user"))
+    private List <Volunteer> volunteers;
+
     public Activity() {
         locations = new ArrayList<>();
         languages=new ArrayList<>();
+        volunteers=new ArrayList<>();
     }
 }

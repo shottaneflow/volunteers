@@ -44,4 +44,5 @@ public class Event {
         this.activities=new ArrayList<>();
     }
 
+
 }

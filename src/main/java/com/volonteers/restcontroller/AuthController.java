@@ -1,4 +1,4 @@
-package com.volonteers.controller;
+package com.volonteers.restcontroller;
 
 import com.volonteers.exceptions.AppError;
 import com.volonteers.model.Volunteer;
