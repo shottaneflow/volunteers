@@ -22,7 +22,7 @@ public class RegistrationController {
     @PostMapping
     public ResponseEntity<?> saveUser(@RequestBody Volunteer user) {
             this.userService.addUser(user);
-            return new ResponseEntity<>(HttpStatus.CREATED);
+            return new ResponseEntity<>(HttpStatus.OK);
 
 
     }

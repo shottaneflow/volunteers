@@ -31,8 +31,8 @@ public class SecurityBeans {
                                 .requestMatchers("/auth-api/**").permitAll()
                                 .requestMatchers("/registration-api/**").permitAll()
                                 .requestMatchers("/welcome-page-api/**").permitAll()
-                                .requestMatchers("/registration/**").permitAll()
                                 .anyRequest().authenticated()
+
                 );
         return http.build();
     }
