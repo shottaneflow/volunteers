@@ -1,6 +1,8 @@
 package com.volonteers.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,10 +29,12 @@ public class Event {
     private String type;
 
     @Column(name = "c_required_volunteers")
-    @Size(min = 0, max = 250)
+    @Min(value = 0, message = "Значение должно быть больше или равно 1")
+    @Max(value = 1000, message = "Значение не должно превышать 1000")
     private Integer requiredVolunteers;
     @Column(name = "c_registered_volunteers")
-    @Size(min = 0, max = 250)
+    @Min(value = 0, message = "Значение должно быть больше или равно 1")
+    @Max(value = 1000, message = "Значение не должно превышать 1000")
     private Integer registeredVolunteers;
     @Column(name = "c_status")
     private String status;
