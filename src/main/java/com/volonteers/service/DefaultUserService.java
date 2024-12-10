@@ -93,4 +93,5 @@ public class DefaultUserService implements UserService {
         user.setActivationCode(null);
         userRepository.save(user);
     }
+
 }

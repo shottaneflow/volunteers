@@ -1,5 +1,6 @@
 package com.volonteers.restcontroller;
 
+import com.volonteers.dto.AuthRequest;
 import com.volonteers.exceptions.AppError;
 import com.volonteers.model.Volunteer;
 import com.volonteers.service.UserService;
@@ -52,8 +53,11 @@ public class AuthController {
         }
         UserDetails userDetails=userService.loadUserByUsername(volunteer.getUsername());
         String token=jwtTokenUtils.generateToken(userDetails);
+        AuthRequest authRequest=new AuthRequest();
+        authRequest.setToken(token);
+        authRequest.setRoles(userDetails.getAuthorities());
 
-        return ResponseEntity.ok(token);
+        return ResponseEntity.ok(authRequest);
 
     }
 

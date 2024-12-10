@@ -5,6 +5,9 @@ import com.volonteers.model.Event;
 import com.volonteers.repository.EventRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class DefaultEventService implements EventService {
 
@@ -21,5 +24,26 @@ public class DefaultEventService implements EventService {
     @Override
     public void addEvent(Event event) {
         this.eventRepository.save(event);
+    }
+    @Override
+    public void deleteEventById(int id) {
+        this.eventRepository.deleteById(id);
+    }
+    @Override
+    public List<Event> sortEventsByDateTimeAsc() {
+        Iterable<Event> eventsIterable = eventRepository.findAll();
+        List<Event> events = new ArrayList<>();
+        eventsIterable.forEach(events::add);
+        events.sort((event1, event2) -> event1.getDateTime().compareTo(event2.getDateTime())); // Сортировка по возрастанию
+        return events;
+    }
+
+    @Override
+    public List<Event> sortEventsByDateTimeDesc() {
+        Iterable<Event> eventsIterable = eventRepository.findAll();
+        List<Event> events = new ArrayList<>();
+        eventsIterable.forEach(events::add);
+        events.sort((event1, event2) -> event2.getDateTime().compareTo(event1.getDateTime())); // Сортировка по убыванию
+        return events;
     }
 }

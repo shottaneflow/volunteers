@@ -49,4 +49,9 @@ public class Event {
     }
 
 
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+
 }
