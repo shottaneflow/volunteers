@@ -1,8 +1,10 @@
 package com.volonteers.service;
 
 
+import com.volonteers.model.Activity;
 import com.volonteers.model.Event;
 import com.volonteers.repository.EventRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -45,5 +47,21 @@ public class DefaultEventService implements EventService {
         eventsIterable.forEach(events::add);
         events.sort((event1, event2) -> event2.getDateTime().compareTo(event1.getDateTime())); // Сортировка по убыванию
         return events;
+    }
+
+    @Override
+    public Iterable<Activity> getActivitiesByEventId(int id){
+        return this.eventRepository.findById(id).get().getActivities();
+    }
+
+    @Override
+    @Transactional
+    public void addActivityByEventId(int id, Activity activity) {
+        this.eventRepository.findById(id).get().getActivities().add(activity);
+    }
+
+    @Override
+    public void deleteActivityByEventId(int eventId,Activity activity) {
+        this.eventRepository.findById(eventId).get().getActivities().remove(activity);
     }
 }
