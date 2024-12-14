@@ -1,20 +1,26 @@
 package com.volonteers.service;
 
 import com.volonteers.model.Activity;
+import com.volonteers.model.Event;
 import com.volonteers.repository.ActivityRepository;
+import com.volonteers.repository.EventRepository;
 import com.volonteers.repository.LocationRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Service
 public class DefaultActivityService  implements ActivityService {
 
     private final ActivityRepository activityRepository;
-    private final LocationService locationService;
+    private final EventRepository eventRepository;
 
-    public DefaultActivityService(ActivityRepository activityRepository, LocationService locationService) {
+
+    public DefaultActivityService(ActivityRepository activityRepository, EventRepository eventRepository) {
         this.activityRepository = activityRepository;
-        this.locationService = locationService;
+        this.eventRepository = eventRepository;
     }
 
     @Override
@@ -32,6 +38,20 @@ public class DefaultActivityService  implements ActivityService {
     @Override
     public void save(Activity activity) {
         activityRepository.save(activity);
+    }
+    @Override
+    public List<Activity> sortActivitiesByDateTimeAsc(int id) {
+        Event event = this.eventRepository.findById(id).orElse(null);
+        List<Activity> activities = event.getActivities();
+        activities.sort((activity1, activity2) -> activity1.getDateTime().compareTo(activity2.getDateTime())); // Сортировка по возрастанию
+        return activities;
+    }
+    @Override
+    public List<Activity> sortActivitiesByDateTimeDesc(int id) {
+        Event event = this.eventRepository.findById(id).orElse(null);
+        List<Activity> activities = event.getActivities();
+        activities.sort((activity1, activity2) -> activity1.getDateTime().compareTo(activity1.getDateTime())); // Сортировка по убыванию
+        return activities;
     }
 
 }

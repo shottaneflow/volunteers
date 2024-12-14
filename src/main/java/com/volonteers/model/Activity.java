@@ -55,4 +55,7 @@ public class Activity {
         languages=new ArrayList<>();
         volunteers=new ArrayList<>();
     }
+    public LocalDateTime getDateTime() {
+        return startDate;
+    }
 }

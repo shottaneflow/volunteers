@@ -34,6 +34,8 @@ public class AdminActivitiesController {
     }
     @PostMapping("/create-activity")
     public void createActivity(@PathVariable int id, @RequestBody Activity activity) {
+        List<Location> updatedLocations = this.locationService.saveLocations(activity.getLocations());
+        activity.setLocations(updatedLocations);
         this.activityService.addActivity(activity);
         this.eventService.addActivityByEventId(id,activity);
     }

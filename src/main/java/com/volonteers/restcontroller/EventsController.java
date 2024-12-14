@@ -35,4 +35,5 @@ public class EventsController {
         return eventService.sortEventsByDateTimeDesc();
     }
 
+
 }
