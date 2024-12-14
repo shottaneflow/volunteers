@@ -49,7 +49,10 @@ public class AuthController {
             }
         }
         catch (BadCredentialsException e) {
-            return new ResponseEntity<>(new AppError(HttpStatus.UNAUTHORIZED.value(),"Неправильный  логин или пароль"), HttpStatus.UNAUTHORIZED);
+            if(this.userService.findByUsername(volunteer.getUsername()) != null)
+                return new ResponseEntity<>(new AppError(HttpStatus.UNAUTHORIZED.value(),"Неправильный пароль"), HttpStatus.UNAUTHORIZED);
+            else
+                return new ResponseEntity<>(new AppError(HttpStatus.UNAUTHORIZED.value(), "Неправильный логин"), HttpStatus.UNAUTHORIZED);
         }
         UserDetails userDetails=userService.loadUserByUsername(volunteer.getUsername());
         String token=jwtTokenUtils.generateToken(userDetails);
