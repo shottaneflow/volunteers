@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      id: update-date-of-birth-to-timestamp
+      author: Danil Dmitriev
+      changes:
+        - modifyDataType:
+            tableName: t_user
+            columnName: c_date_of_birth
+            newDataType: timestamp

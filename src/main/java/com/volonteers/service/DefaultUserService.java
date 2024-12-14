@@ -93,5 +93,9 @@ public class DefaultUserService implements UserService {
         user.setActivationCode(null);
         userRepository.save(user);
     }
+    @Override
+    public void save(Volunteer volunteer){
+        this.userRepository.save(volunteer);
+    }
 
 }

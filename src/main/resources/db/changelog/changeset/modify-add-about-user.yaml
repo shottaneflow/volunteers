@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-about-to-user
+      author: Danil Dmitriev
+      changes:
+        - addColumn:
+            tableName: t_user
+            columns:
+              - column:
+                  name: c_about
+                  type: varchar(500)

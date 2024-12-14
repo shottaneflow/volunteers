@@ -1,0 +1,18 @@
+databaseChangeLog:
+  - changeSet:
+      id: modify-request-id-autoincrement
+      author: Danil Dmitriev
+      changes:
+        - dropColumn:
+            tableName: t_request
+            columnName: id
+        - addColumn:
+            tableName: t_request
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false

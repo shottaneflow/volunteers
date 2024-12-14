@@ -8,5 +8,6 @@ public interface UserService extends UserDetailsService {
     Volunteer findByUsername(String username);
     void addUser(Volunteer user);
     void activateUser(String code);
+    void save(Volunteer user);
 
 }

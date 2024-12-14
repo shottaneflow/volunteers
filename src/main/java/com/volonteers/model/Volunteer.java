@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,9 +34,13 @@ public class Volunteer {
     @Size(min=5,max=50)
     private String fio;
     @Column(name = "c_date_of_birth")
-    private String dateOfBirth;
+    private LocalDate dateOfBirth;
     @Column(name = "c_gender")
     private String gender;
+
+    @Column(name="c_about")
+    @Size(min=0,max=500)
+    private String about;
 
     @Column(name = "c_activation_code")
     private String activationCode;

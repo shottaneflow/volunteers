@@ -37,3 +37,9 @@ databaseChangeLog:
       file: db/changelog/changeset/create-request-table.yaml
   - include:
       file: db/changelog/changeset/modify-location-table.yaml
+  - include:
+      file: db/changelog/changeset/modify-add-about-user.yaml
+  - include:
+      file: db/changelog/changeset/modify-type-dateOfBirth-user.yaml
+  - include:
+      file: db/changelog/changeset/modify-request-id.yaml

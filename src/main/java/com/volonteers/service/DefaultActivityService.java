@@ -2,6 +2,7 @@ package com.volonteers.service;
 
 import com.volonteers.model.Activity;
 import com.volonteers.model.Event;
+import com.volonteers.model.Volunteer;
 import com.volonteers.repository.ActivityRepository;
 import com.volonteers.repository.EventRepository;
 import com.volonteers.repository.LocationRepository;
@@ -52,6 +53,13 @@ public class DefaultActivityService  implements ActivityService {
         List<Activity> activities = event.getActivities();
         activities.sort((activity1, activity2) -> activity1.getDateTime().compareTo(activity1.getDateTime())); // Сортировка по убыванию
         return activities;
+    }
+    @Override
+    public void addVolunteer(int activityId,Volunteer volunteer) {
+        Activity activity = this.activityRepository.findById(activityId).orElse(null);
+        activity.getVolunteers().add(volunteer);
+        activity.setRegisteredVolunteers(activity.getRegisteredVolunteers()+1);
+        this.activityRepository.save(activity);
     }
 
 }

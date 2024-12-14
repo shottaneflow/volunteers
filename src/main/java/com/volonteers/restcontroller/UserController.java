@@ -1,14 +1,15 @@
 package com.volonteers.restcontroller;
 
 
+import com.volonteers.model.Volunteer;
 import com.volonteers.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -32,5 +33,20 @@ public class UserController {
                 .stream()
                 .map(authority -> authority.getAuthority())
                 .collect(Collectors.toSet());
+    }
+    @GetMapping("/profile")
+    public ResponseEntity<Volunteer> getUserProfile(Principal principal) {
+        Volunteer volunteer = this.userService.findByUsername(principal.getName());
+        return ResponseEntity.ok(volunteer);
+    }
+    @PostMapping("/profile/edit")
+    public ResponseEntity<?> editUserProfile(Principal principal, @Valid @RequestBody Volunteer volunteer) {
+        Volunteer volunter = this.userService.findByUsername(principal.getName());
+        volunter.setFio(volunteer.getFio());
+        volunter.setGender(volunteer.getGender());
+        volunter.setDateOfBirth(volunteer.getDateOfBirth());
+        volunter.setLanguages(volunteer.getLanguages());
+        this.userService.save(volunter);
+        return ResponseEntity.ok(volunter);
     }
 }
