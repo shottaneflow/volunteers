@@ -17,6 +17,4 @@ public class Location {
     @Column(name = "c_name")
     private String name;
 
-    @Column(name = "c_address")
-    private String address;
 }

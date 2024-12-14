@@ -35,3 +35,5 @@ databaseChangeLog:
       file: db/changelog/changeset/create-activity-users-table.yaml
   - include:
       file: db/changelog/changeset/create-request-table.yaml
+  - include:
+      file: db/changelog/changeset/modify-location-table.yaml

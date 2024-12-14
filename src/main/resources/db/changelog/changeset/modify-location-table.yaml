@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: remove-address-column
+      author: Danil Dmitriev
+      changes:
+        - dropColumn:
+            tableName: t_location
+            columnName: c_address

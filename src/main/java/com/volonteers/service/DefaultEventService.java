@@ -64,4 +64,26 @@ public class DefaultEventService implements EventService {
     public void deleteActivityByEventId(int eventId,Activity activity) {
         this.eventRepository.findById(eventId).get().getActivities().remove(activity);
     }
+    @Override
+    public void editEventById(int id, Event event) {
+        Event oldEvent = this.eventRepository.findById(id).get();
+        Event newEvent = new Event();
+        newEvent.setId(oldEvent.getId());
+        newEvent.setActivities(oldEvent.getActivities());
+        newEvent.setRegisteredVolunteers(oldEvent.getRegisteredVolunteers());
+        newEvent.setDateTime(event.getDateTime());
+        newEvent.setName(event.getName());
+        newEvent.setType(event.getType());
+        newEvent.setStatus(event.getStatus());
+        newEvent.setRequiredVolunteers(event.getRequiredVolunteers());
+        this.eventRepository.delete(oldEvent);
+        this.eventRepository.save(newEvent);
+    }
+    @Override
+    public Event getEventById(int id){
+        return this.eventRepository.findById(id).get();
+    }
+
+
+
 }

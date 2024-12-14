@@ -2,6 +2,7 @@ package com.volonteers.service;
 
 import com.volonteers.model.Activity;
 import com.volonteers.repository.ActivityRepository;
+import com.volonteers.repository.LocationRepository;
 import org.springframework.stereotype.Service;
 
 
@@ -9,9 +10,11 @@ import org.springframework.stereotype.Service;
 public class DefaultActivityService  implements ActivityService {
 
     private final ActivityRepository activityRepository;
+    private final LocationService locationService;
 
-    public DefaultActivityService(ActivityRepository activityRepository) {
+    public DefaultActivityService(ActivityRepository activityRepository, LocationService locationService) {
         this.activityRepository = activityRepository;
+        this.locationService = locationService;
     }
 
     @Override
@@ -26,4 +29,9 @@ public class DefaultActivityService  implements ActivityService {
     public Activity getActivityById(int id) {
         return this.activityRepository.findById(id).orElse(null);
     }
+    @Override
+    public void save(Activity activity) {
+        activityRepository.save(activity);
+    }
+
 }

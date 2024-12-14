@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class Activity {
     @Column(name="c_name")
     private String name;
     @Column(name="c_start_date")
-    private LocalDate startDate;
+    private LocalDateTime startDate;
     @Column(name = "c_required_volunteers")
     @Min(value = 0, message = "Значение должно быть больше или равно 1")
     @Max(value = 250, message = "Значение не должно превышать 1000")

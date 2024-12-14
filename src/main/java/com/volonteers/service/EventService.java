@@ -14,5 +14,7 @@ public interface EventService {
     Iterable<Activity> getActivitiesByEventId(int eventId);
     void addActivityByEventId(int eventId, Activity activity);
     void deleteActivityByEventId(int eventId,Activity activity);
+    void editEventById(int eventId, Event event);
+    Event getEventById(int eventId);
 
 }

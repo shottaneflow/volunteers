@@ -39,16 +39,22 @@ public class AdminEventsController {
     public ResponseEntity<Void> deleteEvent(@PathVariable int id) {
         List<Activity> activities = new ArrayList<>();
         this.eventService.getActivitiesByEventId(id).forEach(activities::add);
-
-        // Удаляем активности
         for (Activity activity : activities) {
             this.eventService.deleteActivityByEventId(id, activity);
             this.activityService.deleteActivityById(activity.getId());
         }
-
-        // Удаляем само событие
         eventService.deleteEventById(id);
-
         return ResponseEntity.noContent().build();
     }
+    @PostMapping("/{id}/edit-event")
+    public ResponseEntity<?> editEvent(@PathVariable int id,@Valid @RequestBody Event event) {
+        this.eventService.editEventById(id,event);
+        return ResponseEntity.ok().build();
+    }
+    @GetMapping("/events/{id}")
+    public ResponseEntity<Event> getEventById(@PathVariable int id) {
+        Event event = eventService.getEventById(id);
+        return ResponseEntity.ok(event);
+    }
+
 }
