@@ -84,6 +84,21 @@ public class DefaultEventService implements EventService {
         return this.eventRepository.findById(id).get();
     }
 
+    @Override
+    public List<Event> getEventsFilterByType(String type){
+        List<Event> events = new ArrayList<>();
+        Iterable<Event> eventsIterable = this.eventRepository.findAllByType(type);
+        eventsIterable.forEach(events::add);
+        return events;
+    }
+    @Override
+    public  List<Event> getEventsFilterByStatus(String status){
+        List<Event> events = new ArrayList<>();
+        Iterable<Event> eventsIterable = this.eventRepository.findAllByStatus(status);
+        eventsIterable.forEach(events::add);
+        return events;
+    }
+
 
 
 }

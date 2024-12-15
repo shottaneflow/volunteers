@@ -16,5 +16,6 @@ public interface EventService {
     void deleteActivityByEventId(int eventId,Activity activity);
     void editEventById(int eventId, Event event);
     Event getEventById(int eventId);
-
+    List<Event> getEventsFilterByType(String type);
+    List<Event> getEventsFilterByStatus(String status);
 }

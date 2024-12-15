@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -34,6 +35,25 @@ public class EventsController {
     public List<Event> getSortedEventsDesc() {
         return eventService.sortEventsByDateTimeDesc();
     }
+    @GetMapping("/events/filter/type")
+    public List<Event> getFilteredEventsType(@RequestParam List<String> types) {
+        List<Event> filteredEvents = new ArrayList<>();
+        for (String type : types) {
+            filteredEvents.addAll(this.eventService.getEventsFilterByType(type));
+        }
+        return filteredEvents;
+    }
+
+
+    @GetMapping("/events/filter/status")
+    public List<Event> getFilteredEventsStatus(@RequestParam List<String> status) {
+        List<Event> filteredEvents = new ArrayList<>();
+        for (String s : status) {
+            filteredEvents.addAll(this.eventService.getEventsFilterByStatus(s));
+        }
+        return filteredEvents;
+    }
+
 
 
 }
