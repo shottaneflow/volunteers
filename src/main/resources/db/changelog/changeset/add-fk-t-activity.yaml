@@ -1,0 +1,54 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-fk-activity
+      author: Danil Dmitriev
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: t_event_activity
+            baseColumnNames: id_activity
+            constraintName: fk_activity_event_update
+            referencedTableName: t_activity
+            referencedColumnNames: id
+
+  - changeSet:
+      id: add-fk-activity-request
+      author: Danil Dmitriev
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: t_request
+            baseColumnNames: activity_id
+            constraintName: fk_request_activity
+            referencedTableName: t_activity
+            referencedColumnNames: id
+
+  - changeSet:
+      id: add-fk-activity-languages
+      author: Danil Dmitriev
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: t_activity_languages
+            baseColumnNames: id_activity
+            constraintName: fk_activity_languages
+            referencedTableName: t_activity
+            referencedColumnNames: id
+
+        - addForeignKeyConstraint:
+            baseTableName: t_activity_locations
+            baseColumnNames: id_activity
+            constraintName: fk_activity_locations
+            referencedTableName: t_activity
+            referencedColumnNames: id
+
+        - addForeignKeyConstraint:
+            baseTableName: t_activity_users
+            baseColumnNames: id_activity
+            constraintName: fk_activity_users
+            referencedTableName: t_activity
+            referencedColumnNames: id
+
+        - addForeignKeyConstraint:
+            baseTableName: t_event_activity
+            baseColumnNames: id_activity
+            constraintName: fk_activity_event
+            referencedTableName: t_activity
+            referencedColumnNames: id

@@ -43,3 +43,13 @@ databaseChangeLog:
       file: db/changelog/changeset/modify-type-dateOfBirth-user.yaml
   - include:
       file: db/changelog/changeset/modify-request-id.yaml
+  - include:
+      file: db/changelog/changeset/drop-t-activity-fk.yaml
+  - include:
+      file: db/changelog/changeset/drop-fk-request-activity-table.yaml
+  - include:
+      file: db/changelog/changeset/drop-fk-activty-event.yaml
+  - include:
+      file: db/changelog/changeset/modify-id-activity.yaml
+  - include:
+      file: db/changelog/changeset/add-fk-t-activity.yaml

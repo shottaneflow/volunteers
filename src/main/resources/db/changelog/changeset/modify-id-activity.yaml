@@ -1,0 +1,18 @@
+databaseChangeLog:
+  - changeSet:
+      id: modify-activity-id
+      author: Danil Dmitriev
+      changes:
+        - dropColumn:
+            tableName: t_activity
+            columnName: id
+        - addColumn:
+            tableName: t_activity
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false

@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: remove-fk-activity-languages
+      author: Danil Dmitriev
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: t_activity_languages
+            baseColumnNames: id_activity
+            constraintName: fk_activity_languages
+        - dropForeignKeyConstraint:
+            baseTableName: t_activity_locations
+            baseColumnNames: id_activity
+            constraintName: fk_activity_locations
+        - dropForeignKeyConstraint:
+            baseTableName: t_activity_users
+            baseColumnNames: id_activity
+            constraintName: fk_activity_users
+        - dropForeignKeyConstraint:
+            baseTableName: t_event_activity
+            baseColumnNames: id_activity
+            constraintName: fk_activity_event

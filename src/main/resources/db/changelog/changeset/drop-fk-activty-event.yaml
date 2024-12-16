@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      id: remove-fk-event-activity
+      author: Danil Dmitriev
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: t_event_activity
+            baseColumnNames: id_activity
+            constraintName: fk_activity_event_update

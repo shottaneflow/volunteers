@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      id: remove-fk-activity-request
+      author: Danil Dmitriev
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: t_request
+            baseColumnNames: activity_id
+            constraintName: fk_request_activity
