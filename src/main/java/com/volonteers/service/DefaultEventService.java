@@ -76,7 +76,6 @@ public class DefaultEventService implements EventService {
         newEvent.setType(event.getType());
         newEvent.setStatus(event.getStatus());
         newEvent.setRequiredVolunteers(event.getRequiredVolunteers());
-        this.eventRepository.delete(oldEvent);
         this.eventRepository.save(newEvent);
     }
     @Override
