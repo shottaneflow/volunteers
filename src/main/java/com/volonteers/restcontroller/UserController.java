@@ -46,6 +46,7 @@ public class UserController {
         volunter.setGender(volunteer.getGender());
         volunter.setDateOfBirth(volunteer.getDateOfBirth());
         volunter.setLanguages(volunteer.getLanguages());
+        volunter.setAbout(volunteer.getAbout());
         this.userService.save(volunter);
         return ResponseEntity.ok(volunter);
     }
