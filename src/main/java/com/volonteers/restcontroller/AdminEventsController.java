@@ -5,6 +5,8 @@ import com.volonteers.model.Activity;
 import com.volonteers.model.Event;
 import com.volonteers.service.ActivityService;
 import com.volonteers.service.EventService;
+import com.volonteers.service.RequestService;
+import com.volonteers.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,10 +21,12 @@ public class AdminEventsController {
 
     private final EventService eventService;
     private final ActivityService activityService;
+    private final RequestService requestService;
 
-    public AdminEventsController(EventService eventService, ActivityService activityService ) {
+    public AdminEventsController(EventService eventService, ActivityService activityService, RequestService requestService ) {
         this.eventService = eventService;
         this.activityService = activityService;
+        this.requestService = requestService;
     }
 
     @GetMapping("/all-events")
@@ -40,6 +44,7 @@ public class AdminEventsController {
         List<Activity> activities = new ArrayList<>();
         this.eventService.getActivitiesByEventId(id).forEach(activities::add);
         for (Activity activity : activities) {
+            this.requestService.deleteByActivityId(activity.getId());
             this.eventService.deleteActivityByEventId(id, activity);
             this.activityService.deleteActivityById(activity.getId());
         }
