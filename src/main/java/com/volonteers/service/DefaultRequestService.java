@@ -3,6 +3,7 @@ package com.volonteers.service;
 import com.volonteers.model.Request;
 import com.volonteers.model.Volunteer;
 import com.volonteers.repository.RequestRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -40,5 +41,10 @@ public class DefaultRequestService implements RequestService {
    @Override
     public void save(Request request) {
         this.requestRepository.save(request);
+   }
+   @Override
+   @Transactional
+    public  void deleteByActivityId(int activityId){
+        this.requestRepository.deleteAllByActivityId(activityId);
    }
 }

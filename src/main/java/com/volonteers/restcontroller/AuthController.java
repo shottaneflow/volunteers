@@ -24,14 +24,12 @@ public class AuthController {
 
 
     private final AuthenticationManager authenticationManager;
-    private final BCryptPasswordEncoder passwordEncoder;
     private final UserService userService;
     private final JwtTokenUtils jwtTokenUtils;
 
-    public AuthController(AuthenticationManager authenticationManager, BCryptPasswordEncoder passwordEncoder,
+    public AuthController(AuthenticationManager authenticationManager,
                           UserService userService) {
         this.authenticationManager = authenticationManager;
-        this.passwordEncoder = passwordEncoder;
         this.userService = userService;
         this.jwtTokenUtils = new JwtTokenUtils();
     }

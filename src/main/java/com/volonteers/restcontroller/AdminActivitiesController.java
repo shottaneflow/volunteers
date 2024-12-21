@@ -6,6 +6,7 @@ import com.volonteers.model.Location;
 import com.volonteers.service.ActivityService;
 import com.volonteers.service.EventService;
 import com.volonteers.service.LocationService;
+import com.volonteers.service.RequestService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,11 +22,14 @@ public class AdminActivitiesController {
 
     private final LocationService locationService;
 
+    private final RequestService requestService;
+
     public AdminActivitiesController(ActivityService activityService, EventService eventService
-    , LocationService locationService) {
+    , LocationService locationService, RequestService requestService) {
         this.activityService = activityService;
         this.eventService = eventService;
         this.locationService = locationService;
+        this.requestService = requestService;
     }
 
     @GetMapping("/activities")
@@ -41,6 +45,7 @@ public class AdminActivitiesController {
     }
     @DeleteMapping("/delete-activity/{activityId}")
     public void deleteActivity(@PathVariable int activityId, @PathVariable int id) {
+        this.requestService.deleteByActivityId(activityId);
         this.eventService.deleteActivityByEventId(id,this.activityService.getActivityById(activityId));
         this.activityService.deleteActivityById(activityId);
     }

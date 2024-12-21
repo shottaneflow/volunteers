@@ -10,4 +10,5 @@ public interface RequestService {
     Iterable<Request> findAll();
     Request findById(int requestId);
     void save(Request request);
+    void deleteByActivityId(int activityId);
 }
