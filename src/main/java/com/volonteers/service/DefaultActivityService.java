@@ -59,6 +59,11 @@ public class DefaultActivityService  implements ActivityService {
         Activity activity = this.activityRepository.findById(activityId).orElse(null);
         activity.getVolunteers().add(volunteer);
         activity.setRegisteredVolunteers(activity.getRegisteredVolunteers()+1);
+        Event event = this.eventRepository.findByActivityId(activityId);
+        if(event.getRegisteredVolunteers()==null)
+            event.setRegisteredVolunteers(0);
+        event.setRegisteredVolunteers(event.getRegisteredVolunteers()+1);
+        this.eventRepository.save(event);
         this.activityRepository.save(activity);
     }
 

@@ -2,6 +2,7 @@ package com.volonteers.restcontroller;
 
 
 import com.volonteers.model.Activity;
+import com.volonteers.model.Event;
 import com.volonteers.model.Location;
 import com.volonteers.service.ActivityService;
 import com.volonteers.service.EventService;
@@ -46,6 +47,10 @@ public class AdminActivitiesController {
     @DeleteMapping("/delete-activity/{activityId}")
     public void deleteActivity(@PathVariable int activityId, @PathVariable int id) {
         this.requestService.deleteByActivityId(activityId);
+        Event event = this.eventService.getEventById(id);
+        Activity activity = this.activityService.getActivityById(activityId);
+        event.setRegisteredVolunteers(event.getRegisteredVolunteers()-activity.getRegisteredVolunteers());
+        this.eventService.addEvent(event);
         this.eventService.deleteActivityByEventId(id,this.activityService.getActivityById(activityId));
         this.activityService.deleteActivityById(activityId);
     }
