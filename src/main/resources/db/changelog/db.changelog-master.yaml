@@ -53,3 +53,5 @@ databaseChangeLog:
       file: db/changelog/changeset/modify-id-activity.yaml
   - include:
       file: db/changelog/changeset/add-fk-t-activity.yaml
+  - include:
+      file: db/changelog/changeset/modify-timestamp-activity-startDate.yaml

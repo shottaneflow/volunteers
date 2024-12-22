@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      id: modify-start-date-to-timestamp
+      author: Danil Dmitriev
+      changes:
+        - modifyDataType:
+            columnName: c_start_date
+            tableName: t_activity
+            newDataType: timestamp
