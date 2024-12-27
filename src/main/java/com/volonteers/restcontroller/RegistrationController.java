@@ -21,8 +21,13 @@ public class RegistrationController {
 
     @PostMapping
     public ResponseEntity<?> saveUser(@RequestBody Volunteer user) {
+        try {
             this.userService.addUser(user);
             return new ResponseEntity<>(HttpStatus.OK);
+        }
+        catch (BadCredentialsException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
 
 
     }

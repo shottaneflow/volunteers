@@ -18,4 +18,5 @@ public interface EventService {
     Event getEventById(int eventId);
     List<Event> getEventsFilterByType(String type);
     List<Event> getEventsFilterByStatus(String status);
+    Event getEventByName(String name);
 }

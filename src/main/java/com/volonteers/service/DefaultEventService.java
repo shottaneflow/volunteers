@@ -97,6 +97,10 @@ public class DefaultEventService implements EventService {
         eventsIterable.forEach(events::add);
         return events;
     }
+    @Override
+    public Event getEventByName(String name){
+        return this.eventRepository.findByName(name);
+    }
 
 
 

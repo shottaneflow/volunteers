@@ -10,4 +10,5 @@ public interface EventRepository extends CrudRepository<Event, Integer> {
     Iterable<Event> findAllByStatus(String status);
     @Query("SELECT e FROM Event e JOIN e.activities a WHERE a.id = :activityId")
     Event findByActivityId(@Param("activityId") Integer activityId);
+    Event findByName(String name);
 }

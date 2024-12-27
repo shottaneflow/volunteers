@@ -14,4 +14,5 @@ public interface ActivityService {
     List<Activity>  sortActivitiesByDateTimeAsc(int id);
     List<Activity> sortActivitiesByDateTimeDesc(int id);
     void addVolunteer(int activityId,Volunteer volunteer);
+    Activity getActivityByName(String name);
 }

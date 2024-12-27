@@ -66,5 +66,10 @@ public class DefaultActivityService  implements ActivityService {
         this.eventRepository.save(event);
         this.activityRepository.save(activity);
     }
+    @Override
+    public Activity getActivityByName(String name) {
+        return this.activityRepository.findByName(name);
+    }
+
 
 }

@@ -8,6 +8,7 @@ import com.volonteers.service.EventService;
 import com.volonteers.service.RequestService;
 import com.volonteers.service.UserService;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,6 +37,9 @@ public class AdminEventsController {
 
     @PostMapping("/create-event")
     public ResponseEntity<?> createEvent(@Valid @RequestBody Event event) {
+        if(this.eventService.getEventByName(event.getName()) != null) {
+            return new ResponseEntity<>("Событие "+event.getName()+" уже существует", HttpStatus.BAD_REQUEST);
+        }
         this.eventService.addEvent(event);
         return ResponseEntity.ok().build();
     }
@@ -53,6 +57,9 @@ public class AdminEventsController {
     }
     @PostMapping("/{id}/edit-event")
     public ResponseEntity<?> editEvent(@PathVariable int id,@Valid @RequestBody Event event) {
+        if(this.eventService.getEventByName(event.getName()) != null) {
+            return new ResponseEntity<>("Событие "+event.getName()+" уже существует", HttpStatus.BAD_REQUEST);
+        }
         this.eventService.editEventById(id,event);
         return ResponseEntity.ok().build();
     }
