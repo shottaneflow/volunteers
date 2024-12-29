@@ -9,5 +9,6 @@ public interface UserService extends UserDetailsService {
     void addUser(Volunteer user);
     void activateUser(String code);
     void save(Volunteer user);
+    Volunteer findUserById(int id);
 
 }

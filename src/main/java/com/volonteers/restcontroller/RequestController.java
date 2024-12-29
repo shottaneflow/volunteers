@@ -4,6 +4,7 @@ import com.volonteers.model.Request;
 import com.volonteers.model.Volunteer;
 import com.volonteers.service.RequestService;
 import com.volonteers.service.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,5 +34,13 @@ public class RequestController {
     public Iterable<Request> getMyRequests(Principal principal) {
         Volunteer volunteer =this.userService.findByUsername(principal.getName());
         return this.requestService.findRequestsByUserId(volunteer.getId());
+    }
+    @GetMapping("/get-user-from-request/{id}")
+    public ResponseEntity<?> getVolunteer(@PathVariable int id) {
+        Volunteer volunteer=this.userService.findUserById(id);
+        if(volunteer==null) {
+            return new ResponseEntity<>("Профиль не найден", HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(volunteer, HttpStatus.OK);
     }
 }

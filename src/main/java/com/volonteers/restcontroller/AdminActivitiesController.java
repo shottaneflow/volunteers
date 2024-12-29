@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -55,6 +56,8 @@ public class AdminActivitiesController {
         this.requestService.deleteByActivityId(activityId);
         Event event = this.eventService.getEventById(id);
         Activity activity = this.activityService.getActivityById(activityId);
+        if(event.getRegisteredVolunteers()==null)
+            event.setRegisteredVolunteers(0);
         event.setRegisteredVolunteers(event.getRegisteredVolunteers()-activity.getRegisteredVolunteers());
         this.eventService.addEvent(event);
         this.eventService.deleteActivityByEventId(id,this.activityService.getActivityById(activityId));

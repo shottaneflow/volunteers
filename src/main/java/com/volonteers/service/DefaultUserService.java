@@ -97,5 +97,9 @@ public class DefaultUserService implements UserService {
     public void save(Volunteer volunteer){
         this.userRepository.save(volunteer);
     }
+    @Override
+    public Volunteer findUserById(int id){
+        return this.userRepository.findById(id).orElse(null);
+    }
 
 }
