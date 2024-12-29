@@ -62,9 +62,6 @@ public class AdminActivitiesController {
     }
     @PostMapping("/edit-activity/{activityId}")
     public ResponseEntity<?> editActivity(@PathVariable int id, @PathVariable int activityId, @RequestBody Activity activity) throws BadRequestException {
-        if(this.activityService.getActivityByName(activity.getName()) != null) {
-            return new ResponseEntity<>("Мероприятие " + activity.getName() + " уже существует", HttpStatus.BAD_REQUEST);
-        }
         Activity existingActivity = activityService.getActivityById(activityId);
         existingActivity.setName(activity.getName());
         existingActivity.setStartDate(activity.getStartDate());

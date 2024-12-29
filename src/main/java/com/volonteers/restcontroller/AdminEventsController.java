@@ -57,9 +57,6 @@ public class AdminEventsController {
     }
     @PostMapping("/{id}/edit-event")
     public ResponseEntity<?> editEvent(@PathVariable int id,@Valid @RequestBody Event event) {
-        if(this.eventService.getEventByName(event.getName()) != null) {
-            return new ResponseEntity<>("Событие "+event.getName()+" уже существует", HttpStatus.BAD_REQUEST);
-        }
         this.eventService.editEventById(id,event);
         return ResponseEntity.ok().build();
     }
